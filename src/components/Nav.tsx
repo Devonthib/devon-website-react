@@ -11,10 +11,6 @@ interface NavProps {
   };
 }
 
-function scrollToRef(ref: React.RefObject<HTMLDivElement>) {
-  ref.current?.scrollIntoView({ behavior: "smooth" });
-}
-
 function Nav({ className, refs }: NavProps) {
   const navItems = [
     { name: "About", ref: refs.aboutRef },
@@ -32,7 +28,9 @@ function Nav({ className, refs }: NavProps) {
           <div
             key={item.name}
             className="cursor-pointer px-5 flex items-center"
-            onClick={() => scrollToRef(item.ref)}
+            onClick={() =>
+              item.ref.current?.scrollIntoView({ behavior: "smooth" })
+            }
           >
             {item.name}
           </div>

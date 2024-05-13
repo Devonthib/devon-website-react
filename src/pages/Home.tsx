@@ -1,5 +1,3 @@
-import { useRef } from "react";
-
 interface HomeProps {
   className?: string;
   refs: {
