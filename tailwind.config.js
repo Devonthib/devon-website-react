@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
+  darkMode: "selector",
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
@@ -9,23 +10,18 @@ module.exports = {
       },
       fontFamily: {},
       fontSize: {
-        "6xs": ["0.25rem", "0.25rem"],
-        "5xs": ["0.40rem", "0.40rem"],
-        "4xs": ["0.50rem", "0.50rem"],
-        "3xs": ["0.60rem", "0.60rem"],
-        "2xs": ["0.75rem", "0.75rem"],
-        "1xs": ["0.875rem", "0.875rem"],
+        xs6: ["0.25rem", "0.25rem"],
+        xs5: ["0.40rem", "0.40rem"],
+        xs4: ["0.50rem", "0.50rem"],
+        xs3: ["0.60rem", "0.60rem"],
+        xs2: ["0.75rem", "0.75rem"],
+        xs1: ["0.875rem", "0.875rem"],
+        xl1: ["1rem", "1rem"],
         xl2: ["1.125rem", "1.125rem"],
         xl3: ["1.25rem", "1.25rem"],
         xl4: ["1.375rem", "1.375rem"],
         xl5: ["1.5rem", "1.5rem"],
         xl6: ["1.625rem", "1.625rem"],
-
-        xsx: ["12px", "16px"],
-        smx: ["14px", "20px"],
-        basex: ["16px", "24px"],
-        lgx: ["20px", "28px"],
-        xlx: ["24px", "32px"],
       },
       backdropBlur: {
         xs: "2px",
@@ -36,65 +32,22 @@ module.exports = {
         "2xl": "48px",
       },
       colors: {
-        transparent: "transparent",
-        black: "#000000",
-        white: "#FFFFFF",
-        text: "#e4e4e4",
-        shadow: "rgba(0, 0, 0, 0.15)",
+        bg: "#ffffff",
+        darkbg: "#111821",
 
-        primary: "#3C5B6F",
-        "primary-dark": "#153448",
-        secondary: "#DFD0B8",
-        "secondary-dark": "#948979",
+        // primary: "#3C5B6F",
+        // "primary-dark": "#153448",
+        // secondary: "#DFD0B8",
+        // "secondary-dark": "#948979",
 
-        green: "rgba(127, 236, 76, 1)",
-        "dark-green": "rgba(23, 64, 24, 1)",
-        "darker-green": "rgba(15, 43, 15, 1)",
-        red: "#EC4C4C",
-        "dark-red": "rgba(106, 41, 41, 1)",
-        "darker-red": "rgba(64, 24, 24, 1)",
-        grey: "rgba(48, 53, 67, 1)",
-        "light-grey": "rgba(116, 125, 155, 1)",
-
-        light: {
-          background: "#ffffff",
-        },
-        dark: {
-          background: "#202124",
-        },
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
+        // green: "rgba(127, 236, 76, 1)",
+        // "dark-green": "rgba(23, 64, 24, 1)",
+        // "darker-green": "rgba(15, 43, 15, 1)",
+        // red: "#EC4C4C",
+        // "dark-red": "rgba(106, 41, 41, 1)",
+        // "darker-red": "rgba(64, 24, 24, 1)",
+        // grey: "rgba(48, 53, 67, 1)",
+        // "light-grey": "rgba(116, 125, 155, 1)",
       },
       backgroundImage: {
         "radial-white":
@@ -123,20 +76,7 @@ module.exports = {
         "9.5x": "38px",
         "10x": "40px",
       },
-      dropShadow: {
-        top: "0 -4px 6px var(--color-shadow)",
-        "top-lg": "0 -10px 15px var(--color-shadow)",
-        "top-xl": "0 -20px 25px var(--color-shadow)",
-        "top-2xl": "0 -25px 50px var(--color-shadow)",
-        center: "0 0 6px var(--color-shadow)",
-        "center-lg": "0 0 15px var(--color-shadow)",
-        "center-xl": "0 0 25px var(--color-shadow)",
-        "center-2xl": "0 0 50px var(--color-shadow)",
-        bottom: "0 4px 6px var(--color-shadow)",
-        "bottom-lg": "0 10px 15px var(--color-shadow)",
-        "bottom-xl": "0 20px 25px var(--color-shadow)",
-        "bottom-2xl": "0 25px 50px var(--color-shadow)",
-      },
+
       flexGrow: {
         max: 9999,
       },
