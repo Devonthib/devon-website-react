@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -39,13 +39,41 @@ select:-webkit-autofill:focus {
   background-color: #303543;
 }
 
-html {
-  font-family: "Oswald", sans-serif;
-  color: #fff;
-  font-weight: 100;
+div {
+  --background: 255, 255, 255;
+  --text: 18, 24, 33;
+  --offtext: 129, 75, 21;
+
+  --strong: 255, 72, 32;
+
+  --card: 5, 45, 86;
+
+  --accent: 174, 103, 250;
+  --offaccent: 244, 152, 103;
+
+  --red: 185, 49, 79;
+  --green: 47, 117, 79;
 }
 
-body {
+.dark div {
+  --background: 4, 12, 24;
+  --text: 255, 255, 255;
+  --offtext: 129, 175, 221;
+
+  --strong: 255, 72, 32;
+
+  --card: 5, 45, 86;
+
+  --accent: 174, 103, 250;
+  --offaccent: 244, 152, 103;
+
+  --red: 229, 158, 174;
+  --green: 167, 220, 191;
+}
+
+div {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;

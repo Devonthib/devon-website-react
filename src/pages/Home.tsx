@@ -1,3 +1,11 @@
+import AboutMe from "@components/AboutMe";
+import Contact from "@components/Contact";
+import Footer from "@components/Footer";
+import Intro from "@components/Intro";
+import Projects from "@components/Projects";
+import Skills from "@components/Skills";
+import cn from "@utils/cn";
+
 interface HomeProps {
   className?: string;
   refs: {
@@ -11,23 +19,13 @@ interface HomeProps {
 
 function Home({ className, refs }: HomeProps) {
   return (
-    <div className={className}>
-      <div>INTRO</div>
-      <div ref={refs.aboutRef} className="">
-        About me
-      </div>
-      <div ref={refs.skillsRef} className="">
-        Skills
-      </div>
-      <div ref={refs.projectsRef} className="">
-        Projects
-      </div>
-      <div ref={refs.contactRef} className="">
-        Contact
-      </div>
-      <div ref={refs.resumeRef} className="">
-        Resume
-      </div>
+    <div className={cn(className, "space-y-20")}>
+      <Intro className="pt-20" />
+      <AboutMe ref={refs.aboutRef} />
+      <Skills ref={refs.skillsRef} />
+      <Projects ref={refs.projectsRef} />
+      <Contact ref={refs.contactRef} />
+      <Footer />
     </div>
   );
 }

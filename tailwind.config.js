@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       screens: {
         mobile: { max: "767px" },
+        tablet: { max: "1023px" },
       },
       fontFamily: {},
       fontSize: {
@@ -22,6 +23,7 @@ module.exports = {
         xl4: ["1.375rem", "1.375rem"],
         xl5: ["1.5rem", "1.5rem"],
         xl6: ["1.625rem", "1.625rem"],
+        header: "1.8rem",
       },
       backdropBlur: {
         xs: "2px",
@@ -32,24 +34,48 @@ module.exports = {
         "2xl": "48px",
       },
       colors: {
-        bg: "#ffffff",
-        darkbg: "#111821",
+        bg: "rgba(var(--background))",
+        text: "rgba(var(--text))",
+        offtext: "rgba(var(--offtext))",
 
-        // primary: "#3C5B6F",
-        // "primary-dark": "#153448",
-        // secondary: "#DFD0B8",
-        // "secondary-dark": "#948979",
+        strong: "rgba(var(--strong))",
 
-        // green: "rgba(127, 236, 76, 1)",
-        // "dark-green": "rgba(23, 64, 24, 1)",
-        // "darker-green": "rgba(15, 43, 15, 1)",
-        // red: "#EC4C4C",
-        // "dark-red": "rgba(106, 41, 41, 1)",
-        // "darker-red": "rgba(64, 24, 24, 1)",
-        // grey: "rgba(48, 53, 67, 1)",
-        // "light-grey": "rgba(116, 125, 155, 1)",
+        card: "rgba(var(--card))",
+
+        accent: "rgba(var(--accent))",
+        offaccent: "rgba(var(--offaccent))",
+
+        red: "rgba(var(--red))",
+        green: "rgba(var(--green))",
+        contrast: {
+          v1: "hsla(20, 90%, 70%, 1)", // Converted from --offaccent
+          v2: "hsla(270, 100%, 70%, 1)", // Converted from --accent
+          v3: "hsla(257, 100%, 67%, 1)",
+          "v1-light-filled": "hsla(20, 90%, 50%, 1)", // Adjusted for light-filled
+          "v2-light-filled": "hsla(270, 100%, 50%, 1)", // Adjusted for light-filled
+          "v1-dark-filled": "hsla(20, 90%, 30%, 1)", // Adjusted for dark-filled
+          "v2-dark-filled": "hsla(270, 100%, 30%, 1)", // Adjusted for dark-filled
+        },
       },
       backgroundImage: {
+        "contrast-long":
+          "linear-gradient(45deg, hsl(20, 90%, 70%), hsl(270, 100%, 70%), hsl(267, 83%, 60%), hsl(20, 90%, 70%), hsl(20, 90%, 70%), hsl(270, 100%, 70%))",
+        "contrast-long-v2":
+          "linear-gradient(90deg, hsl(20, 90%, 70%), hsl(270, 100%, 70%), hsl(249, 46%, 54%), hsl(20, 90%, 70%), hsl(20, 90%, 70%), hsl(270, 100%, 70%))",
+        "contrast-90":
+          "linear-gradient(247deg, var(--color-contrast-v1) 0%, var(--color-contrast-v2) 100%)",
+        "contrast-90-dark":
+          "linear-gradient(247deg, var(--color-contrast-v1-dark-filled) 0%, var(--color-contrast-v2-dark-filled) 100%)",
+        "contrast-90-reverse":
+          "linear-gradient(247deg, var(--color-contrast-v2) 0%, var(--color-contrast-v1) 100%)",
+        "contrast-90-reverse-dark":
+          "linear-gradient(247deg, var(--color-contrast-v2-dark-filled) 0%, var(--color-contrast-v1-dark-filled) 100%)",
+        "top-gradient":
+          "linear-gradient(90deg, rgba(67, 45, 45, 0.25) 0%, rgba(80, 68, 68, 0.25) 50%, rgba(67, 45, 45, 0.25) 100%)",
+        "side-gradient":
+          "linear-gradient(180deg, #181818 0%, #181818 50%, #231E1E 100%)",
+        "button-gradient":
+          "linear-gradient(270deg, #1F1F1F 0%, #262323 50%, #1F1F1F 100%)",
         "radial-white":
           "radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%)",
       },

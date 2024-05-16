@@ -1,12 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
-
 import { RootState } from "@redux/store";
 import Home from "@pages/Home";
 import { useEffect, useRef } from "react";
-
 import { setDarkMode } from "@redux/mainSlice";
+
 import Nav from "@components/Nav";
-import Footer from "@components/Footer";
+import ContactIcons from "@components/ContactIcons";
+
+import cn from "@utils/cn";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,10 +24,12 @@ function App() {
 
     if (selectedTheme === "dark") {
       dispatch(setDarkMode(true));
+      document.body.classList.add("dark");
     }
 
     if (selectedTheme === "light") {
       dispatch(setDarkMode(false));
+      document.body.classList.remove("dark");
     }
 
     if (selectedTheme === null) {
@@ -35,12 +38,17 @@ function App() {
       ).matches;
       localStorage.setItem("theme", systemTheme ? "dark" : "light");
       dispatch(setDarkMode(systemTheme));
+      if (systemTheme) {
+        document.body.classList.add("dark");
+      } else {
+        document.body.classList.remove("dark");
+      }
     }
   }, [isDark]);
 
   return (
-    <div className={isDark ? "dark" : ""}>
-      <div className="flex flex-col h-full w-full bg-bg dark:bg-darkbg px-20">
+    <div className={cn(isDark ? "dark" : "", "no-scrollbar")}>
+      <div className="flex flex-col h-full w-full bg-bg text-text px-20">
         <Nav
           className="h-auto"
           refs={{ aboutRef, skillsRef, projectsRef, contactRef, resumeRef }}
@@ -49,7 +57,7 @@ function App() {
           className="h-full"
           refs={{ aboutRef, skillsRef, projectsRef, contactRef, resumeRef }}
         />
-        <Footer className="h-auto" />
+        <ContactIcons />
       </div>
     </div>
   );
