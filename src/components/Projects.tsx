@@ -3,6 +3,7 @@ import cn from "@utils/cn";
 
 import { projectsData } from "@utils/data";
 import { Button } from "@components/ui/button";
+import Glow from "@components/ui/Glow";
 
 interface ProjectsProps {
   className?: string;
@@ -12,21 +13,35 @@ interface ProjectsProps {
 const Projects = React.forwardRef<HTMLDivElement, ProjectsProps>(
   ({ className, ...rest }, ref) => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [animationClass, setAnimationClass] = useState("");
 
     const handlePrev = () => {
+      setAnimationClass("animate-slide-in-left");
       setCurrentIndex((prevIndex) =>
         prevIndex === 0 ? projectsData.length - 1 : prevIndex - 1
       );
     };
 
     const handleNext = () => {
+      setAnimationClass("animate-slide-in-right");
       setCurrentIndex((prevIndex) =>
         prevIndex === projectsData.length - 1 ? 0 : prevIndex + 1
       );
     };
 
     return (
-      <div className={cn("", className)} ref={ref} {...rest}>
+      <div
+        className={cn("relative overflow-visible", className)}
+        ref={ref}
+        {...rest}
+      >
+        <Glow
+          position="center"
+          className={cn(
+            "bg-glow h-[650px] w-[650px] mr-24 opacity-100 dark:opacity-85",
+            "mobile:h-[400px] mobile:w-[400px]"
+          )}
+        />
         <h2 className="text-3xl font-bold mb-6 bg-gradient-to-br from-accent to-offaccent text-transparent bg-clip-text">
           Portfolio
         </h2>
@@ -39,36 +54,44 @@ const Projects = React.forwardRef<HTMLDivElement, ProjectsProps>(
               >
                 &lt;
               </button>
-              <div className="w-full max-w-3xl p-4 bg-card rounded-lg shadow-lg mx-4  tablet:mx-0">
-                <h3 className="text-2xl font-semibold mb-4 text-white">
-                  {projectsData[currentIndex].name}
-                </h3>
-                <div className="relative w-full pb-[56.25%]">
-                  <img
-                    src={projectsData[currentIndex].image}
-                    alt={projectsData[currentIndex].name}
-                    className="absolute top-0 left-0 w-full h-full object-cover rounded mb-4"
-                  />
+              <div className="w-full max-w-3xl p-4 bg-card rounded-lg shadow-lg mx-4 tablet:mx-0">
+                <div
+                  className={cn(
+                    "transition-transform duration-500",
+                    animationClass
+                  )}
+                  onAnimationEnd={() => setAnimationClass("")}
+                >
+                  <h3 className="text-2xl font-semibold mb-4 text-white">
+                    {projectsData[currentIndex].name}
+                  </h3>
+                  <div className="relative w-full pb-[56.25%]">
+                    <img
+                      src={projectsData[currentIndex].image}
+                      alt={projectsData[currentIndex].name}
+                      className="absolute top-0 left-0 w-full h-full object-cover rounded mb-4"
+                    />
+                  </div>
+                  <p className="text-lg pt-1 mb-4 text-accent tablet:text-xl1 tablet:pt-2">
+                    {projectsData[currentIndex].description}
+                  </p>
+                  {projectsData[currentIndex] && (
+                    <Button
+                      onClick={() => {
+                        window.open(projectsData[currentIndex].link);
+                      }}
+                      disabled={projectsData[currentIndex].link === ""}
+                      size={"default"}
+                      type="submit"
+                      variant="gradient-border-animate"
+                      className={cn(
+                        "text-base font-normal text-white py-1 active:scale-95  disabled:cursor-not-allowed"
+                      )}
+                    >
+                      View Project
+                    </Button>
+                  )}
                 </div>
-                <p className="text-lg mb-4 text-accent">
-                  {projectsData[currentIndex].description}
-                </p>
-                {projectsData[currentIndex] && (
-                  <Button
-                    onClick={() => {
-                      window.open(projectsData[currentIndex].link);
-                    }}
-                    disabled={projectsData[currentIndex].link === ""}
-                    size={"default"}
-                    type="submit"
-                    variant="gradient-border-animate"
-                    className={cn(
-                      "text-base font-normal text-white py-1 active:scale-95  disabled:cursor-not-allowed"
-                    )}
-                  >
-                    View Project
-                  </Button>
-                )}
               </div>
               <button
                 onClick={handleNext}

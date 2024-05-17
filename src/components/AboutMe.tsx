@@ -1,5 +1,7 @@
 import cn from "@utils/cn";
-import React from "react";
+import React, { useRef } from "react";
+import Glow from "@components/ui/Glow";
+import { useIsVisible } from "@utils/useIsVisible";
 
 interface AboutMeProps {
   className?: string;
@@ -8,8 +10,30 @@ interface AboutMeProps {
 
 const AboutMe = React.forwardRef<HTMLDivElement, AboutMeProps>(
   ({ className, ...rest }, ref) => {
+    const pastRef = useRef(null);
+    const isVisiblePast = useIsVisible(pastRef);
+
+    const presentRef = useRef(null);
+    const isVisiblePresent = useIsVisible(presentRef);
+
+    const futureRef = useRef(null);
+    const isVisibleFuture = useIsVisible(futureRef);
+
+    const animationClass = "transition-opacity ease-in duration-1000";
+
     return (
-      <div className={cn("", className)} ref={ref} {...rest}>
+      <div
+        className={cn("relative overflow-visible", className)}
+        ref={ref}
+        {...rest}
+      >
+        <Glow
+          position="bottom-left"
+          className={cn(
+            "bg-offaccent h-[185px] w-[185px]  opacity-100 dark:bg-glow",
+            "tablet:top-1/2 tablet:left-1/2 tablet:transform tablet:-translate-x-1/2 tablet:-translate-y-1/2"
+          )}
+        />
         <h2 className="text-3xl font-bold mb-6 bg-gradient-to-br from-accent to-offaccent text-transparent bg-clip-text">
           About Me
         </h2>
@@ -19,35 +43,66 @@ const AboutMe = React.forwardRef<HTMLDivElement, AboutMeProps>(
             "tablet:flex-col tablet:space-x-0 tablet:space-y-8"
           )}
         >
-          <div className={cn("w-1/3", "tablet:w-full")}>
+          <div
+            ref={pastRef}
+            className={cn(
+              "w-1/3",
+              "tablet:w-full",
+              animationClass,
+              isVisiblePast ? "opacity-100" : "opacity-0",
+              "delay-200"
+            )}
+          >
             <h3 className="text-2xl font-semibold mb-4">Past</h3>
-            <div className="h-1 w-15 mb-3 bg-gradient-to-r from-accent to-offaccent " />
+            <div
+              className={cn(
+                "h-1 w-15 mb-3 bg-gradient-to-r from-accent to-offaccent "
+              )}
+            />
             <p className="text-lg text-offtext">
-              I discovered my passion for programming when I was just 14 years old.
-              Initially, it was a hobby, but I quickly became interested in web
-              development and the creative possibilities it offered. Over the
-              years, I continued to develop my skills and fell more in love with
-              building websites.
+              From a young age, I was captivated by the digital world. My journey
+              began not with code, but with curiosity—exploring how things worked
+              behind the screen. This curiosity soon transformed into a passion for
+              web development, where creativity meets logic.
             </p>
           </div>
-          <div className={cn("w-1/3", "tablet:w-full")}>
+          <div
+            ref={presentRef}
+            className={cn(
+              "w-1/3",
+              "tablet:w-full",
+              animationClass,
+              isVisiblePresent ? "opacity-100" : "opacity-0",
+              "delay-500"
+            )}
+          >
             <h3 className="text-2xl font-semibold mb-4">Present</h3>
             <div className="h-1 w-15 mb-3 bg-gradient-to-r from-accent to-offaccent " />
             <p className="text-lg text-offtext">
-              Now, as a professional web developer, I am pursuing my dream of
-              creating impactful digital experiences. I work with technologies like
-              React, TypeScript, and Tailwind CSS, applying my skills in real-world
-              projects and gaining practical experience.
+              Today, I am a dedicated web developer, crafting immersive digital
+              experiences using cutting-edge technologies like React, TypeScript,
+              and Tailwind CSS. My work is a blend of art and science, where each
+              project is an opportunity to innovate and push boundaries.
             </p>
           </div>
-          <div className={cn("w-1/3", "tablet:w-full")}>
+          <div
+            ref={futureRef}
+            className={cn(
+              "w-1/3",
+              "tablet:w-full",
+              animationClass,
+              isVisibleFuture ? "opacity-100" : "opacity-0",
+              "delay-1000"
+            )}
+          >
             <h3 className="text-2xl font-semibold mb-4">Future</h3>
             <div className="h-1 w-15 mb-3 bg-gradient-to-r from-accent to-offaccent " />
             <p className="text-lg text-offtext">
-              Looking ahead, I'm excited about the future of web development and
-              the endless opportunities it presents. I'm confident that my passion
-              for the field, coupled with my skills, will enable me to make
-              meaningful contributions to the industry in the years to come.
+              The future of web development is a canvas of infinite possibilities.
+              I am eager to explore new horizons, leveraging my expertise to create
+              solutions that are not only functional but also transformative. My
+              goal is to leave a lasting impact on the digital landscape, one line
+              of code at a time.
             </p>
           </div>
         </div>

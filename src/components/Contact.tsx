@@ -1,5 +1,7 @@
 import cn from "@utils/cn";
-import React from "react";
+import React, { useRef } from "react";
+import { useIsVisible } from "@utils/useIsVisible";
+import Glow from "@components/ui/Glow";
 
 interface ContactProps {
   className?: string;
@@ -8,8 +10,27 @@ interface ContactProps {
 
 const Contact = React.forwardRef<HTMLDivElement, ContactProps>(
   ({ className, ...rest }, ref) => {
+    const employmentRef = useRef(null);
+    const isVisibleEmployment = useIsVisible(employmentRef);
+
+    const connectRef = useRef(null);
+    const isVisibleConnect = useIsVisible(connectRef);
+
+    const buildRef = useRef(null);
+    const isVisibleBuild = useIsVisible(buildRef);
+
+    const animationClass = "transition-opacity ease-in duration-1000";
+
     return (
-      <div className={cn("", className)} ref={ref} {...rest}>
+      <div
+        className={cn("relative overflow-visible", className)}
+        ref={ref}
+        {...rest}
+      >
+        <Glow
+          position="bottom-left"
+          className="bg-accent h-[250px] w-[250px] mb-12 opacity-75 dark:opacity-30"
+        />
         <h2 className="text-3xl font-bold mb-6 bg-gradient-to-br from-accent to-offaccent text-transparent bg-clip-text">
           Contact
         </h2>
@@ -20,7 +41,17 @@ const Contact = React.forwardRef<HTMLDivElement, ContactProps>(
             "mobile:flex-col mobile:space-x-0 mobile:space-y-8"
           )}
         >
-          <div className={cn("w-1/3", "tablet:w-full", "mobile:w-full")}>
+          <div
+            ref={employmentRef}
+            className={cn(
+              "w-1/3",
+              "tablet:w-full",
+              "mobile:w-full",
+              animationClass,
+              isVisibleEmployment ? "opacity-100" : "opacity-0",
+              "delay-200"
+            )}
+          >
             <h3 className="text-2xl font-semibold mb-4">Seeking employment</h3>
             <div className="h-1 w-15 mb-3 bg-gradient-to-r from-accent to-offaccent " />
             <p className="text-lg text-offtext">
@@ -31,8 +62,18 @@ const Contact = React.forwardRef<HTMLDivElement, ContactProps>(
               mind, feel free to reach out and let's discuss!
             </p>
           </div>
-          <div className={cn("w-1/3", "tablet:w-full", "mobile:w-full")}>
-            <h3 className="text-2xl font-semibold mb-4">Lets connect!</h3>
+          <div
+            ref={connectRef}
+            className={cn(
+              "w-1/3",
+              "tablet:w-full",
+              "mobile:w-full",
+              animationClass,
+              isVisibleConnect ? "opacity-100" : "opacity-0",
+              "delay-500"
+            )}
+          >
+            <h3 className="text-2xl font-semibold mb-4">Let's connect!</h3>
             <div className="h-1 w-15 mb-3 bg-gradient-to-r from-accent to-offaccent " />
             <p className="text-lg text-offtext">
               Networking is key in the tech industry, and I'm always looking to
@@ -42,7 +83,17 @@ const Contact = React.forwardRef<HTMLDivElement, ContactProps>(
               the conversation takes us!
             </p>
           </div>
-          <div className={cn("w-1/3", "tablet:w-full", "mobile:w-full")}>
+          <div
+            ref={buildRef}
+            className={cn(
+              "w-1/3",
+              "tablet:w-full",
+              "mobile:w-full",
+              animationClass,
+              isVisibleBuild ? "opacity-100" : "opacity-0",
+              "delay-1000"
+            )}
+          >
             <h3 className="text-2xl font-semibold mb-4">
               Want to build something?
             </h3>

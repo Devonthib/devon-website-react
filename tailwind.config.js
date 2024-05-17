@@ -40,6 +40,8 @@ module.exports = {
 
         strong: "rgba(var(--strong))",
 
+        glow: "rgba(var(--glow))",
+
         card: "rgba(var(--card))",
 
         accent: "rgba(var(--accent))",
@@ -750,12 +752,22 @@ module.exports = {
           from: { backgroundPosition: "0% 0%" },
           to: { backgroundPosition: "100% 100%" },
         },
+        "slide-in-left": {
+          "0%": { transform: "translateX(-100%)", opacity: "0" },
+          "100%": { transform: "translateX(0)", opacity: "1" },
+        },
+        "slide-in-right": {
+          "0%": { transform: "translateX(100%)", opacity: "0" },
+          "100%": { transform: "translateX(0)", opacity: "1" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "gradient-rotate": "gradient-rotate 2s infinite",
         "single-spin": "spin 325ms ease-in-out",
+        "slide-in-left": "slide-in-left 0.5s ease-in-out",
+        "slide-in-right": "slide-in-right 0.5s ease-in-out",
       },
     },
   },

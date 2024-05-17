@@ -12,6 +12,9 @@ import cn from "@utils/cn";
 function App() {
   const dispatch = useDispatch();
   const isDark = useSelector((state: RootState) => state.main.darkMode);
+  const hamburgerOpen = useSelector(
+    (state: RootState) => state.main.hamburgerOpen
+  );
 
   const aboutRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
@@ -47,14 +50,20 @@ function App() {
   }, [isDark]);
 
   return (
-    <div className={cn(isDark ? "dark" : "", "no-scrollbar")}>
-      <div className="flex flex-col h-full w-full bg-bg text-text px-20">
+    <div
+      className={cn(
+        isDark ? "dark" : "",
+        "max-h-[100vh]",
+        hamburgerOpen && "tablet:overflow-hidden tablet:no-scrollbar"
+      )}
+    >
+      <div className="flex flex-col h-full w-full bg-bg text-text px-20 mobile:px-4">
         <Nav
           className="h-auto"
           refs={{ aboutRef, skillsRef, projectsRef, contactRef, resumeRef }}
         />
         <Home
-          className="h-full"
+          className="h-full overflow-visible"
           refs={{ aboutRef, skillsRef, projectsRef, contactRef, resumeRef }}
         />
         <ContactIcons />

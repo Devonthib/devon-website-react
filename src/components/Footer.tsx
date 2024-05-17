@@ -18,7 +18,7 @@ function Footer({ className, ...rest }: FooterProps) {
         <a href="#top" className="text-offtext hover:underline">
           Back to Top
         </a>
-        <p className="text-center">
+        <p className="text-center mobile:text-sm">
           &copy; {new Date().getFullYear()} Devon Thibodeau. All Rights Reserved.
         </p>
       </div>

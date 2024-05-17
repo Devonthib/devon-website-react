@@ -46,6 +46,8 @@ div {
 
   --strong: 255, 72, 32;
 
+  --glow: 46, 74, 111;
+
   --card: 5, 45, 86;
 
   --accent: 174, 103, 250;
@@ -62,6 +64,8 @@ div {
 
   --strong: 255, 72, 32;
 
+  --glow: 46, 74, 111;
+
   --card: 5, 45, 86;
 
   --accent: 174, 103, 250;
@@ -77,6 +81,10 @@ div {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 /* no-scrollbar class to remove */
