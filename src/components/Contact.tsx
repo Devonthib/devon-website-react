@@ -137,14 +137,14 @@ const Contact = React.forwardRef<HTMLDivElement, ContactProps>(
             >
               LinkedIn
             </a>
-            {/* <a
+            <a
               href="./resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="text-offtext hover:underline"
             >
               Resume
-            </a> */}
+            </a>
           </div>
         </div>
       </div>

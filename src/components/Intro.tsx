@@ -77,10 +77,10 @@ function Intro({ className, ...rest }: IntroProps) {
             "text-base font-normal text-white py-1 active:scale-95 active"
           )}
           onClick={() => {
-            window.open("mailto:devonthibodeau@gmail.com");
+            window.open("./resume.pdf");
           }}
         >
-          Email me
+          View my resume
         </Button>
       </div>
       <div
