@@ -13,10 +13,12 @@ interface IntroProps {
 
 function Intro({ className, ...rest }: IntroProps) {
   const introText = useRef(null);
-  const isVisibleIntro = useIsVisible(introText);
+  const { isIntersecting: isVisibleIntro, hasBeenVisible: hasBeenVisibleIntro } =
+    useIsVisible(introText);
 
   const introImage = useRef(null);
-  const isVisibleImage = useIsVisible(introImage);
+  const { isIntersecting: isVisibleImage, hasBeenVisible: hasBeenVisibleImage } =
+    useIsVisible(introImage);
 
   const animationClass = "transition-opacity ease-in duration-1000";
 
@@ -52,7 +54,11 @@ function Intro({ className, ...rest }: IntroProps) {
           "tablet:w-full",
           "mobile:w-full",
           animationClass,
-          isVisibleIntro ? "opacity-100" : "opacity-0"
+          hasBeenVisibleIntro
+            ? "opacity-100"
+            : isVisibleIntro
+            ? "opacity-100"
+            : "opacity-0"
         )}
       >
         <span className="text-text">Hello! I am</span>
@@ -89,7 +95,11 @@ function Intro({ className, ...rest }: IntroProps) {
           "w-1/2 p-4 flex justify-end",
           "tablet:w-full tablet:justify-center",
           animationClass,
-          isVisibleImage ? "opacity-100" : "opacity-0"
+          hasBeenVisibleImage
+            ? "opacity-100"
+            : isVisibleImage
+            ? "opacity-100"
+            : "opacity-0"
         )}
       >
         <img

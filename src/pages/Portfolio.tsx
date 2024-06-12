@@ -15,20 +15,19 @@ function Portfolio({ className, ...rest }: PortfolioProps) {
       <h2 className="text-3xl font-bold mb-6 gradient-text animate-gradient-loop">
         Portfolio
       </h2>
-      <div className="relative">
-        <div className="flex flex-col gap-24">
-          {projectsData.map((project, index) => (
-            <PortItem
-              key={index}
-              name={project.name}
-              image={project.image}
-              description={project.fullDescription}
-              shortDescription={project.description}
-              link={project.link}
-              glowLeft={index % 2 === 0}
-            />
-          ))}
-        </div>
+
+      <div className="flex flex-col overflow-visible gap-24">
+        {projectsData.map((project, index) => (
+          <PortItem
+            key={index}
+            name={project.name}
+            image={project.image}
+            description={project.fullDescription}
+            shortDescription={project.description}
+            link={project.link}
+            glowLeft={index % 2 === 0}
+          />
+        ))}
       </div>
     </div>
   );

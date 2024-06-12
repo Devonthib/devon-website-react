@@ -11,13 +11,20 @@ interface AboutMeProps {
 const AboutMe = React.forwardRef<HTMLDivElement, AboutMeProps>(
   ({ className, ...rest }, ref) => {
     const pastRef = useRef(null);
-    const isVisiblePast = useIsVisible(pastRef);
+    const { isIntersecting: isVisiblePast, hasBeenVisible: hasBeenVisiblePast } =
+      useIsVisible(pastRef);
 
     const presentRef = useRef(null);
-    const isVisiblePresent = useIsVisible(presentRef);
+    const {
+      isIntersecting: isVisiblePresent,
+      hasBeenVisible: hasBeenVisiblePresent,
+    } = useIsVisible(presentRef);
 
     const futureRef = useRef(null);
-    const isVisibleFuture = useIsVisible(futureRef);
+    const {
+      isIntersecting: isVisibleFuture,
+      hasBeenVisible: hasBeenVisibleFuture,
+    } = useIsVisible(futureRef);
 
     const animationClass = "transition-opacity ease-in duration-1000";
 
@@ -49,7 +56,11 @@ const AboutMe = React.forwardRef<HTMLDivElement, AboutMeProps>(
               "w-1/3",
               "tablet:w-full",
               animationClass,
-              isVisiblePast ? "opacity-100" : "opacity-0",
+              hasBeenVisiblePast
+                ? "opacity-100"
+                : isVisiblePast
+                ? "opacity-100"
+                : "opacity-0",
               "delay-200"
             )}
           >
@@ -72,7 +83,11 @@ const AboutMe = React.forwardRef<HTMLDivElement, AboutMeProps>(
               "w-1/3",
               "tablet:w-full",
               animationClass,
-              isVisiblePresent ? "opacity-100" : "opacity-0",
+              hasBeenVisiblePresent
+                ? "opacity-100"
+                : isVisiblePresent
+                ? "opacity-100"
+                : "opacity-0",
               "delay-500"
             )}
           >
@@ -91,7 +106,11 @@ const AboutMe = React.forwardRef<HTMLDivElement, AboutMeProps>(
               "w-1/3",
               "tablet:w-full",
               animationClass,
-              isVisibleFuture ? "opacity-100" : "opacity-0",
+              hasBeenVisibleFuture
+                ? "opacity-100"
+                : isVisibleFuture
+                ? "opacity-100"
+                : "opacity-0",
               "delay-1000"
             )}
           >

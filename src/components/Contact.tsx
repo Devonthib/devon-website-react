@@ -11,13 +11,20 @@ interface ContactProps {
 const Contact = React.forwardRef<HTMLDivElement, ContactProps>(
   ({ className, ...rest }, ref) => {
     const employmentRef = useRef(null);
-    const isVisibleEmployment = useIsVisible(employmentRef);
+    const {
+      isIntersecting: isVisibleEmployment,
+      hasBeenVisible: hasBeenVisibleEmployment,
+    } = useIsVisible(employmentRef);
 
     const connectRef = useRef(null);
-    const isVisibleConnect = useIsVisible(connectRef);
+    const {
+      isIntersecting: isVisibleConnect,
+      hasBeenVisible: hasBeenVisibleConnect,
+    } = useIsVisible(connectRef);
 
     const buildRef = useRef(null);
-    const isVisibleBuild = useIsVisible(buildRef);
+    const { isIntersecting: isVisibleBuild, hasBeenVisible: hasBeenVisibleBuild } =
+      useIsVisible(buildRef);
 
     const animationClass = "transition-opacity ease-in duration-1000";
 
@@ -48,7 +55,11 @@ const Contact = React.forwardRef<HTMLDivElement, ContactProps>(
               "tablet:w-full",
               "mobile:w-full",
               animationClass,
-              isVisibleEmployment ? "opacity-100" : "opacity-0",
+              hasBeenVisibleEmployment
+                ? "opacity-100"
+                : isVisibleEmployment
+                ? "opacity-100"
+                : "opacity-0",
               "delay-200"
             )}
           >
@@ -69,7 +80,11 @@ const Contact = React.forwardRef<HTMLDivElement, ContactProps>(
               "tablet:w-full",
               "mobile:w-full",
               animationClass,
-              isVisibleConnect ? "opacity-100" : "opacity-0",
+              hasBeenVisibleConnect
+                ? "opacity-100"
+                : isVisibleConnect
+                ? "opacity-100"
+                : "opacity-0",
               "delay-500"
             )}
           >
@@ -90,7 +105,11 @@ const Contact = React.forwardRef<HTMLDivElement, ContactProps>(
               "tablet:w-full",
               "mobile:w-full",
               animationClass,
-              isVisibleBuild ? "opacity-100" : "opacity-0",
+              hasBeenVisibleBuild
+                ? "opacity-100"
+                : isVisibleBuild
+                ? "opacity-100"
+                : "opacity-0",
               "delay-1000"
             )}
           >

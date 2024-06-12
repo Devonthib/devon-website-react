@@ -15,7 +15,9 @@ import ScrollTop from "@components/ScrollToTop";
 function App() {
   const dispatch = useDispatch();
   const isDark = useSelector((state: RootState) => state.main.darkMode);
-  const hamburgerOpen = useSelector((state: RootState) => state.main.hamburgerOpen);
+  const hamburgerOpen = useSelector(
+    (state: RootState) => state.main.hamburgerOpen
+  );
 
   const aboutRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
@@ -37,7 +39,9 @@ function App() {
     }
 
     if (selectedTheme === null) {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const systemTheme = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
       localStorage.setItem("theme", systemTheme ? "dark" : "light");
       dispatch(setDarkMode(systemTheme));
       if (systemTheme) {
@@ -56,7 +60,12 @@ function App() {
         hamburgerOpen && "tablet:overflow-hidden tablet:no-scrollbar"
       )}
     >
-      <div className="flex flex-col h-full w-full bg-bg text-text px-20 mobile:px-4">
+      <div
+        className={cn(
+          "flex flex-col h-full w-full bg-bg text-text px-20 overflow-visible mobile:px-4",
+          hamburgerOpen && "tablet:overflow-hidden tablet:no-scrollbar"
+        )}
+      >
         <Nav
           className="h-auto"
           refs={{ aboutRef, skillsRef, projectsRef, contactRef, resumeRef }}

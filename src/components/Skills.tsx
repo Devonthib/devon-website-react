@@ -12,13 +12,20 @@ interface SkillsProps {
 const Skills = React.forwardRef<HTMLDivElement, SkillsProps>(
   ({ className, ...rest }, ref) => {
     const frontendRef = useRef(null);
-    const isVisibleFrontend = useIsVisible(frontendRef);
+    const {
+      isIntersecting: isVisibleFrontend,
+      hasBeenVisible: hasBeenVisibleFrontend,
+    } = useIsVisible(frontendRef);
 
     const backendRef = useRef(null);
-    const isVisibleBackend = useIsVisible(backendRef);
+    const {
+      isIntersecting: isVisibleBackend,
+      hasBeenVisible: hasBeenVisibleBackend,
+    } = useIsVisible(backendRef);
 
     const toolsRef = useRef(null);
-    const isVisibleTools = useIsVisible(toolsRef);
+    const { isIntersecting: isVisibleTools, hasBeenVisible: hasBeenVisibleTools } =
+      useIsVisible(toolsRef);
 
     const animationClass = "transition-transform ease-in duration-1000";
 
@@ -53,6 +60,12 @@ const Skills = React.forwardRef<HTMLDivElement, SkillsProps>(
                 : index === 1
                 ? isVisibleBackend
                 : isVisibleTools;
+            const hasBeenVisible =
+              index === 0
+                ? hasBeenVisibleFrontend
+                : index === 1
+                ? hasBeenVisibleBackend
+                : hasBeenVisibleTools;
             const delay =
               index === 0 ? "delay-200" : index === 1 ? "delay-500" : "delay-1000";
 
@@ -64,7 +77,9 @@ const Skills = React.forwardRef<HTMLDivElement, SkillsProps>(
                   "w-1/3",
                   "tablet:w-full",
                   animationClass,
-                  isVisible
+                  hasBeenVisible
+                    ? "translate-y-0 mobile:translate-x-0"
+                    : isVisible
                     ? "translate-y-0 mobile:translate-x-0"
                     : "translate-y-52 mobile:translate-x-36 mobile:translate-y-0",
                   delay
