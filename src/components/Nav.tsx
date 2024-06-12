@@ -1,5 +1,6 @@
 import { setDarkMode, setHamburgerOpen } from "@redux/mainSlice";
 import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import cn from "@utils/cn";
 
@@ -34,6 +35,8 @@ function Nav({ className, refs }: NavProps) {
   const isOpen = useSelector((state: RootState) => state.main.hamburgerOpen);
   const dispatch = useDispatch();
   const darkMode = useSelector((state: RootState) => state.main.darkMode);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   function changeTheme() {
     localStorage.setItem("theme", darkMode ? "light" : "dark");
@@ -41,6 +44,11 @@ function Nav({ className, refs }: NavProps) {
   }
 
   function handleNavItemClick(ref: React.RefObject<HTMLDivElement>) {
+    // if the ref is portfolio route to /portfolio else scroll to the ref
+    if (ref === refs.projectsRef) {
+      navigate("/portfolio");
+      return;
+    }
     ref.current?.scrollIntoView({ behavior: "smooth" });
     dispatch(setHamburgerOpen(false));
   }
@@ -50,28 +58,28 @@ function Nav({ className, refs }: NavProps) {
   return (
     <div id="top" className={cn(className, "flex flex-col py-5 relative")}>
       <div className="flex justify-between items-center">
-        <div className="text-header select-none tablet:text-lg tablet:text-nowrap tablet:font-bold">
+        <div
+          className="text-header select-none cursor-pointer tablet:text-lg tablet:text-nowrap tablet:font-bold"
+          onClick={() => navigate("/")}
+        >
           Devon Thibodeau
         </div>
         <div className="flex justify-between mobile:hidden">
-          {navItems.map((item) => (
-            <div
-              key={item.name}
-              className="cursor-pointer px-5 flex items-center select-none hover:underline"
-              onClick={() => handleNavItemClick(item.ref)}
-            >
-              {item.name}
-            </div>
-          ))}
+          {location.pathname !== "/portfolio" &&
+            navItems.map((item) => (
+              <div
+                key={item.name}
+                className="cursor-pointer px-5 flex items-center select-none hover:underline"
+                onClick={() => handleNavItemClick(item.ref)}
+              >
+                {item.name}
+              </div>
+            ))}
           <div className="cursor-pointer px-5 flex items-center select-none">
             {darkMode ? (
               <IconMoon onClick={changeTheme} className="text-accent" stroke={3} />
             ) : (
-              <IconSun
-                onClick={changeTheme}
-                className="text-offaccent"
-                stroke={3}
-              />
+              <IconSun onClick={changeTheme} className="text-offaccent" stroke={3} />
             )}
           </div>
         </div>
@@ -93,28 +101,25 @@ function Nav({ className, refs }: NavProps) {
             )}
           />
           <div className="h-1/5 opacity-10"></div>
-          {navItems.map((item) => (
-            <div
-              key={item.name}
-              className={cn(
-                "cursor-pointer py-2 text-lg hover:underline",
-                animationClass,
-                isOpen ? "opacity-100" : "opacity-0"
-              )}
-              onClick={() => handleNavItemClick(item.ref)}
-            >
-              {item.name}
-            </div>
-          ))}
+          {location.pathname !== "/portfolio" &&
+            navItems.map((item) => (
+              <div
+                key={item.name}
+                className={cn(
+                  "cursor-pointer py-2 text-lg hover:underline",
+                  animationClass,
+                  isOpen ? "opacity-100" : "opacity-0"
+                )}
+                onClick={() => handleNavItemClick(item.ref)}
+              >
+                {item.name}
+              </div>
+            ))}
           <div className="cursor-pointer py-2 text-lg">
             {darkMode ? (
               <IconMoon onClick={changeTheme} className="text-accent" stroke={3} />
             ) : (
-              <IconSun
-                onClick={changeTheme}
-                className="text-offaccent"
-                stroke={3}
-              />
+              <IconSun onClick={changeTheme} className="text-offaccent" stroke={3} />
             )}
           </div>
           <ContactIcons className="mobile:flex mobile:flex-row z-50" />

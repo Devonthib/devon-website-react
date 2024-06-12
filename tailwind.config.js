@@ -740,9 +740,16 @@ module.exports = {
       },
 
       keyframes: {
+        gradient: {
+          "0%": { backgroundPosition: "0% 50%" },
+          "100%": { backgroundPosition: "100% 50%" },
+        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "border-spin": {
+          "100%": { transform: "rotate(-360deg)" },
         },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
@@ -767,6 +774,8 @@ module.exports = {
         "gradient-rotate": "gradient-rotate 2s infinite",
         "single-spin": "spin 325ms ease-in-out",
         "slide-in-left": "slide-in-left 0.5s ease-in-out",
+        "border-spin": "border-spin 7s linear infinite",
+        "gradient-loop": "gradient 6s linear infinite",
         "slide-in-right": "slide-in-right 0.5s ease-in-out",
       },
     },
