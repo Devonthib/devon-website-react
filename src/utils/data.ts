@@ -1,5 +1,13 @@
 export const projectsData = [
   {
+    name: "We Bump",
+    description: "Pump fun token promoter.",
+    fullDescription:
+      "We Bump is a platform that enables users to promote their favorite tokens by bumping them to the top of the list. It offers a fun and engaging way to support your favorite projects and connect with other crypto enthusiasts.",
+    image: "./project/webump.png",
+    link: "https://webump.fun",
+  },
+  {
     name: "Token Forge",
     description: "Solana pair fair launch facilitator.",
     fullDescription:
@@ -37,7 +45,7 @@ export const projectsData = [
     image: "./project/jobrocketeer.png",
     fullDescription:
       "Job Rocketeer is an AI-powered platform that automates the process of writing cover letters for job applications. It uses advanced natural language processing algorithms to generate personalized cover letters that are tailored to the specific job requirements, helping users stand out in the competitive job market.",
-    link: "https://jobrocketeer.com",
+    link: "",
   },
   {
     name: "Rightize.pro",
@@ -53,7 +61,7 @@ export const projectsData = [
     fullDescription:
       "Dremsly.com is a cutting-edge platform that integrates GPT-3.5 to provide users with insightful dream analysis and a personal dream journal. It offers a unique combination of AI-powered interpretation and user-friendly journaling features, making it an invaluable resource for those seeking to understand their dreams.",
     image: "./project/dremsly.png",
-    link: "https://www.dremsly.com",
+    link: "",
   },
   {
     name: "ezure",
